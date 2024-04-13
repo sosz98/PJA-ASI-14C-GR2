@@ -15,3 +15,7 @@ def save_model(model: RandomForestClassifier, dir_path: str) -> None:
         print('Model saved successfully')
     except Exception as e:
         print(f'Error while saving model: {e}')
+
+
+if __name__ == '__main__':
+    pass

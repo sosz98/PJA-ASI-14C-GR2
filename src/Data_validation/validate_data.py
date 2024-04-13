@@ -48,3 +48,7 @@ def validate_categorical_column_ranges(data: pd.DataFrame) -> None:
             f'Column {column_name} failed the test. Should be between {minimum} and {maximum},'
             f'instead min={data[column_name].min()} and max={data[column_name].max()}'
         )
+
+
+if __name__ == '__main__':
+    pass
