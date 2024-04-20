@@ -1,0 +1,52 @@
+{
+    "os": "Linux-6.5.0-26-generic-x86_64-with-glibc2.35",
+    "python": "3.12.2",
+    "heartbeatAt": "2024-04-20T11:16:56.533159",
+    "startedAt": "2024-04-20T11:16:54.963922",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "-f",
+        "obesity_level.csv",
+        "-k",
+        "539d5a6bd0767c2ddcbd28576b61e936a399818b",
+        "-md",
+        "50"
+    ],
+    "state": "running",
+    "program": "/home/artur/Documents/ASI/PJA-ASI-14C-GR2/src/main.py",
+    "codePathLocal": "src/main.py",
+    "codePath": "src/main.py",
+    "git": {
+        "remote": "https://sosz98:@github.com/sosz98/PJA-ASI-14C-GR2.git",
+        "commit": "02e38a36eab1375d06d337da2dc23f401f5a7e76"
+    },
+    "email": "asoszynski_98@wp.pl",
+    "root": "/home/artur/Documents/ASI/PJA-ASI-14C-GR2",
+    "host": "artur-Virtual-Machine",
+    "username": "artur",
+    "executable": "/home/artur/anaconda3/envs/asi-env/bin/python",
+    "cpu_count": 1,
+    "cpu_count_logical": 1,
+    "cpu_freq": {
+        "current": 2994.371,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2994.371,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 123.95224380493164,
+            "used": 27.111629486083984
+        }
+    },
+    "memory": {
+        "total": 13.394039154052734
+    }
+}
