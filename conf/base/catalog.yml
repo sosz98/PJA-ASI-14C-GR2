@@ -1,0 +1,3 @@
+obesity:
+  type: pandas.CSVDataset
+  filepath: src/data/obesity_level.csv

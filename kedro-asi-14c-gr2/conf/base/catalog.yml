@@ -1,3 +1,0 @@
-obesity:
-  type: pandas.CSVDataset
-  filepath: data/01_raw/obesity_level.csv
