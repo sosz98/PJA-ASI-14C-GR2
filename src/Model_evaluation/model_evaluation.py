@@ -4,7 +4,7 @@ Evaluation of a model
 
 import wandb
 from sklearn.metrics import accuracy_score, recall_score, f1_score, confusion_matrix
-from Model_creation.create_model import ModelBean
+from src.Model_creation.create_model import ModelBean
 
 
 def evaluate_model(
@@ -14,7 +14,7 @@ def evaluate_model(
     min_samples_leaf,
     min_samples_split,
     n_estimators,
-) -> None:
+) -> ModelBean:
     model_bean.rfc.fit(model_bean.X_train, model_bean.y_train)
     y_pred = model_bean.rfc.predict(model_bean.X_test)
     y_probas = model_bean.rfc.predict_proba(model_bean.X_test)
@@ -25,14 +25,15 @@ def evaluate_model(
     print(f"Precision: {accuracy_score(model_bean.y_test, y_pred)}")
     print(f"Recall: {recall_score(model_bean.y_test, y_pred, average='macro')}")
     print(f"F1 score: {f1_score(model_bean.y_test, y_pred, average='macro')}")
+    return model_bean
     wandb.login(key=api_key)
     wandb.init(
-        project="PJATK-ASI-14C",
+        project='PJATK-ASI-14C',
         config={
-            "max_depth": max_depth,
-            "min_samples_leaf": min_samples_leaf,
-            "min_samples_split": min_samples_split,
-            "n_estimators": n_estimators,
+            'max_depth': max_depth,
+            'min_samples_leaf': min_samples_leaf,
+            'min_samples_split': min_samples_split,
+            'n_estimators': n_estimators,
         },
     )
     wandb.sklearn.plot_classifier(
@@ -44,7 +45,7 @@ def evaluate_model(
         y_pred,
         y_probas,
         labels,
-        model_name="Random Forest Classifier",
+        model_name='Random Forest Classifier',
     )
     wandb.sklearn.plot_roc(model_bean.y_test, y_probas, labels)
     wandb.sklearn.plot_precision_recall(model_bean.y_test, y_probas, labels)
@@ -56,7 +57,8 @@ def evaluate_model(
         model_bean.X_test,
         model_bean.y_test,
     )
+    return model_bean
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     pass

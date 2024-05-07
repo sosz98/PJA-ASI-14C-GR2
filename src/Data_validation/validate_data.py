@@ -41,7 +41,6 @@ def validate_categorical_column_ranges(data: pd.DataFrame) -> None:
     ranges = {"CAEC": (0, 3), "CALC": (0, 2), "OB_LEVEL": (0, 6)}
 
     for column_name, (minimum, maximum) in ranges.items():
-
         assert data[column_name].dropna().between(minimum, maximum).all(), (
             f"Column {column_name} failed the test. Should be between {minimum} and {maximum},"
             f"instead min={data[column_name].min()} and max={data[column_name].max()}"
