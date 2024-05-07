@@ -4,3 +4,4 @@ numpy
 black
 pylint
 kedro==0.19.3
+argparse

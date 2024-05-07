@@ -11,7 +11,11 @@ def save_model(model: RandomForestClassifier, dir_path: str) -> None:
     try:
         if not os.path.exists(dir_path):
             os.makedirs(dir_path)
-        dump(model, os.path.join(dir_path, 'obesity_classifier.joblib'))
-        print('Model saved successfully')
+        dump(model, os.path.join(dir_path, "obesity_classifier.joblib"))
+        print("Model saved successfully")
     except Exception as e:
-        print(f'Error while saving model: {e}')
+        print(f"Error while saving model: {e}")
+
+
+if __name__ == "__main__":
+    pass

@@ -1,0 +1,1 @@
+{"columns": ["class", "dataset", "count"], "data": [[0, "train", 1986], [0, "test", 537], [1, "train", 2451], [1, "test", 631], [2, "train", 1929], [2, "test", 498], [3, "train", 2016], [3, "test", 506], [4, "train", 2340], [4, "test", 570], [5, "train", 2615], [5, "test", 633], [6, "train", 3269], [6, "test", 777]]}
