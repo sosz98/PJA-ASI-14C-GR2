@@ -1,10 +1,10 @@
 import argparse
-from Data_collecting import collect_data
-from Data_preparation import prepare_data
-from Data_validation import validate_data
-from Model_creation import create_model
-from Model_evaluation import model_evaluation
-from Model_save import model_save
+from src.Modules.Data_collecting import collect_data
+from src.Modules.Data_preparation import prepare_data
+from src.Modules.Data_validation import validate_data
+from src.Modules.Model_creation import create_model
+from src.Modules.Model_evaluation import model_evaluation
+from src.Modules.Model_save import model_save
 
 DEFAULT_FILE_PATH = "../data/obesity.csv"
 SAVE_DIRECTORY_PATH = "../"
