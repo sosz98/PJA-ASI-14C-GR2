@@ -4,21 +4,21 @@ obesity:
 
 preprocessed_obesity:
   type: pandas.ParquetDataset
-  filepath: src/Data_preparation/obesity_level.csv
+  filepath: src/lab_3/Data_preparation/obesity_level.csv
 
 validated_obesity:
   type: pandas.ParquetDataset
-  filepath: src/Data_validation/obesity_level.csv
+  filepath: src/lab_3/Data_validation/obesity_level.csv
 
 initial_model:
   type: pickle.PickleDataset
-  filepath: src/Model_creation/obesity_classifier.joblib
+  filepath: src/lab_3/Model_creation/obesity_classifier.joblib
 
 scored_model:
   type: pickle.PickleDataset
-  filepath: src/Model_evaluation/scored_obesity_classifier.joblib
+  filepath: src/lab_3/Model_evaluation/scored_obesity_classifier.joblib
 
 saved_model:
   type: pickle.PickleDataset
-  filepath: src/Model_save/final_obesity_classifier.joblib
+  filepath: src/lab_3/Model_save/final_obesity_classifier.joblib
   versioned: true
