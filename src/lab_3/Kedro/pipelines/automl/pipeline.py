@@ -7,7 +7,7 @@ def create_pipeline(**kwargs) -> Pipeline:
         node(
             func=automl_train_evaluate,
             inputs=["obesity", "params:automl_model_filepath"],
-            outputs=["automl_predictor", "automl_evaluation"],
+            outputs=None,
             name="automl_node"
         )
     ])
