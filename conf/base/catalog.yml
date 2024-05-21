@@ -2,6 +2,10 @@ obesity:
   type: pandas.CSVDataset
   filepath: src/data/obesity_level.csv
 
+automl_model:
+  type: pickle.PickleDataset
+  filepath: src/lab_3/Automl_model/automl_obesity_classifier.joblib
+
 preprocessed_obesity:
   type: pandas.ParquetDataset
   filepath: src/lab_3/Data_preparation/obesity_level.csv
