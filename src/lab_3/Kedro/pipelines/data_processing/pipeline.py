@@ -9,14 +9,14 @@ def create_pipeline(**kwargs) -> Pipeline:
                 func=validate_data,
                 inputs="preprocessed_obesity",
                 outputs="validated_obesity",
-                name="validation_node"
+                name="validation_node",
             ),
             node(
                 func=create,
                 inputs="validated_obesity",
                 outputs="initial_model",
-                name="model_creation_node"
-            )
+                name="model_creation_node",
+            ),
         ]
     )
 
