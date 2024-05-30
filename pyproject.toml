@@ -16,7 +16,7 @@ project_name = "PJA-ASI-14C-GR2"
 kedro_init_version = "0.19.3"
 tools = [ "None",]
 example_pipeline = "False"
-source_dir = "src/lab_3"
+source_dir = "src/lab_4"
 
 [project.entry-points."kedro.hooks"]
 

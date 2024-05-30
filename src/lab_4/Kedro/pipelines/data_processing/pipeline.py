@@ -14,7 +14,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=create,
                 inputs="validated_obesity",
-                outputs="initial_model",
+                outputs="challenger_model",
                 name="model_creation_node",
             ),
         ]
