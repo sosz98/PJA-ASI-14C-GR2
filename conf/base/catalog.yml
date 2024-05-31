@@ -18,10 +18,6 @@ champion_model:
   type: pickle.PickleDataset
   filepath: src/lab_4/Model_champion/champion.joblib
 
-
-
-
-
 scored_model:
   type: pickle.PickleDataset
   filepath: src/lab_4/Model_evaluation/scored_obesity_classifier.joblib

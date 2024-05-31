@@ -6,9 +6,9 @@ from autogluon.tabular import TabularPredictor
 
 
 class ModelBean:
-    def __init__(self, challenger, performance, X_train, X_test, y_train, y_test):
-        self.challenger = challenger
-        self.performance = performance
+    def __init__(self, model, performance, X_train, X_test, y_train, y_test):
+        self.model = model
+        self.performance: float = performance
         self.X_train = X_train
         self.X_test = X_test
         self.y_train = y_train

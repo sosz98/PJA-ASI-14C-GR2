@@ -48,8 +48,10 @@ coverage.xml
 *.cover
 *.py,cover
 .hypothesis/
-.pytest_cache/
+.pytest_cache/wq
 cover/
+AutogluonModels/
+
 
 # Translations
 *.mo
