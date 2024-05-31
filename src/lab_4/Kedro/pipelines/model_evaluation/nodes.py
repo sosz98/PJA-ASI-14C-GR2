@@ -14,7 +14,7 @@ from sklearn.metrics import confusion_matrix, accuracy_score, recall_score, f1_s
 class ModelBean:
     def __init__(self, model, performance, X_train, X_test, y_train, y_test):
         self.model = model
-        self.performance = performance
+        self.performance: float = performance
         self.X_train = X_train
         self.X_test = X_test
         self.y_train = y_train
@@ -22,11 +22,11 @@ class ModelBean:
 
 
 def load_champion(model_bean):
-    if os.path.exists("src\lab_4\Model_champion\champion.joblib"):
+    if os.path.exists("src\\lab_4\\Model_champion\\champion.joblib"):
         print(100 * "-")
         print("Champion exists")
         print(100 * "-")
-        return load("src\lab_4\Model_champion\champion.joblib")
+        return load("src\\lab_4\\Model_champion\\champion.joblib")
     else:
         print(100 * "-")
         print("Creating new champion")
@@ -41,42 +41,42 @@ def load_champion(model_bean):
         rfc.fit(X_train, y_train)
         score = rfc.score(model_bean.X_test, model_bean.y_test)
         model_bean.score = score
-        dump(rfc, "src\lab_4\Model_champion\champion.joblib")
-    return rfc
+        dump(rfc, "src\\lab_4\\Model_champion\\champion.joblib")
+    return ModelBean(rfc, score, X_train, X_test, y_train, y_test)
 
 
-def compare_models(champion, challenger):
+def compare_models(champion: ModelBean, challenger: ModelBean):
     champion_perf = champion.performance
-    challenger_perf = challenger.performance
+    challenger_perf = challenger.performance['accuracy']
     print(100 * "-")
     print(100 * "-")
-    print("Champion accuracy ", champion_perf["accuracy"])
-    print("Challenger accuracy ", challenger_perf["accuracy"])
+    print(f'Champion accuracy {champion_perf}')
+    print(f'Challenger accuracy {challenger_perf}')
     print(100 * "-")
     print(100 * "-")
-    # champ.fit(model_bean.X_train, model_bean.y_train)
-    if challenger_perf["accuracy"] > champion_perf["accuracy"]:
-        print("Challenger was better than champion. Replacing algorithms")
+
+    if challenger_perf > champion_perf:
+        print('Challenger was better than champion. Replacing algorithms')
         dump(
             ModelBean(
-                challenger.challenger,
+                challenger.model,
                 challenger.performance,
                 challenger.X_train,
                 challenger.X_test,
                 challenger.y_train,
                 challenger.y_test,
             ),
-            "src\lab_4\Model_champion\champion.joblib",
+            'src\\lab_4\\Model_champion\\champion.joblib'
         )
         return
-    print("No changes. Champion is better than challenger")
+    print('No changes. Champion is better than challenger')
 
 
 def evaluate_model(model_bean: ModelBean) -> ModelBean:
-    model_bean.rfc.fit(
+    model_bean.model.fit(
         np.array(model_bean.X_train.values), np.array(model_bean.y_train.values)
     )
-    y_pred = model_bean.rfc.predict(model_bean.X_test.values)
+    y_pred = model_bean.model.predict(model_bean.X_test.values)
     conf_matrix = confusion_matrix(list(model_bean.y_test), y_pred)
 
     print(conf_matrix)
