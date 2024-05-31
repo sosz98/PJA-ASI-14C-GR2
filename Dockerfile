@@ -2,6 +2,7 @@ FROM python:3.9-slim
 
 COPY requirements.txt /tmp/requirements.txt
 RUN python -m pip install -U "pip>=21.2,<23.2"
+RUN python -m pip install --upgrade pip
 
 ARG KEDRO_UID=999
 ARG KEDRO_GID=0
@@ -17,6 +18,7 @@ FROM python:3.9-slim
 ARG KEDRO_UID=999
 ARG KEDRO_GID=0
 COPY --chown=${KEDRO_UID}:${KEDRO_GID} . .
+RUN apt-get update -y && apt-get install -y gcc
 RUN pip install --no-cache-dir -r requirements.txt && rm -f requirements.txt
 EXPOSE 8888
 
