@@ -1,7 +1,6 @@
 FROM python:3.9-slim
 
 COPY requirements.txt /tmp/requirements.txt
-RUN python -m pip install -U "pip>=21.2,<23.2"
 RUN python -m pip install --upgrade pip
 
 ARG KEDRO_UID=999
