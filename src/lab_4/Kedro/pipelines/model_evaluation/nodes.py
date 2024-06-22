@@ -28,26 +28,33 @@ def load_champion(model_bean):
         print(100 * "-")
         return load("src\\lab_4\\Model_champion\\champion.joblib")
     else:
-        print(100 * "-")
-        print("Creating new champion")
-        print(100 * "-")
-        rfc = RandomForestClassifier(random_state=42)
-        X_train, X_test, y_train, y_test = (
-            model_bean.X_train,
-            model_bean.X_test,
-            model_bean.y_train,
-            model_bean.y_test,
-        )
-        rfc.fit(X_train, y_train)
-        score = rfc.score(model_bean.X_test, model_bean.y_test)
-        model_bean.score = score
-        dump(rfc, "src\\lab_4\\Model_champion\\champion.joblib")
-    return ModelBean(rfc, score, X_train, X_test, y_train, y_test)
+        return ModelBean(model=None, X_train=pd.DataFrame(), X_test=pd.DataFrame(), y_train=pd.DataFrame(),
+                         y_test=pd.DataFrame(), performance=-1.0)
 
 
 def compare_models(champion: ModelBean, challenger: ModelBean):
+    challenger_perf = challenger.performance
+    print(champion.performance)
+    if champion.performance < 0:
+        print(100 * "-")
+        print('Champion does not exist, challenger is new champion')
+        print(f'Challenger accuracy {challenger_perf}')
+        print(100 * "-")
+        dump(
+            ModelBean(
+                challenger.model,
+                challenger.performance,
+                challenger.X_train,
+                challenger.X_test,
+                challenger.y_train,
+                challenger.y_test
+            ),
+            'src\\lab_4\\Model_champion\\champion.joblib'
+        )
+        dump(challenger.model, 'src\\lab_4\\Model_champion\\prod_champion.joblib')
+        return
+
     champion_perf = champion.performance
-    challenger_perf = challenger.performance['accuracy']
     print(100 * "-")
     print(100 * "-")
     print(f'Champion accuracy {champion_perf}')
@@ -64,10 +71,11 @@ def compare_models(champion: ModelBean, challenger: ModelBean):
                 challenger.X_train,
                 challenger.X_test,
                 challenger.y_train,
-                challenger.y_test,
+                challenger.y_test
             ),
             'src\\lab_4\\Model_champion\\champion.joblib'
         )
+        dump(challenger.model, 'src\\lab_4\\Model_champion\\prod_champion.joblib')
         return
     print('No changes. Champion is better than challenger')
 
