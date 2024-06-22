@@ -1,4 +1,5 @@
 import numpy as np
+import os
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split, cross_val_score
@@ -15,7 +16,8 @@ class ModelBean:
         self.y_test = y_test
 
 
-def create(obesity: pd.DataFrame) -> ModelBean:
+def create(obesity: pd.DataFrame, automl: bool) -> ModelBean:
+    obesity.drop("id", axis=1, inplace=True)
     X, y = obesity.drop("OB_LEVEL", axis=1), obesity["OB_LEVEL"]
     X = pd.get_dummies(X)
     X_train, X_test, y_train, y_test = train_test_split(
@@ -26,21 +28,29 @@ def create(obesity: pd.DataFrame) -> ModelBean:
     train_data = X_train.copy()
     train_data["OB_LEVEL"] = y_train
 
+    if automl:
+        autogluon_path = os.path.abspath("AutogluonModels")
+        challenger_model = TabularPredictor(label="OB_LEVEL", path=autogluon_path).fit(
+            train_data,
+            hyperparameters={
+                "GBM": {},
+                "RF": {},
+            },
+            presets="medium_quality_faster_train",
+        )
+    else:
+        challenger_model = RandomForestClassifier(random_state=42)
+        challenger_model.fit(X_train, y_train)
+
     # Combine X_test and y_test back into a single DataFrame for AutoGluon
     test_data = X_test.copy()
     test_data["OB_LEVEL"] = y_test
-
-    challenger_model = TabularPredictor(label="OB_LEVEL").fit(
-        train_data,
-        hyperparameters={
-            "GBM": {},
-            "RF": {},
-        },
-        presets="medium_quality_faster_train",
-    )
-
     # Load the best model
-    performance = challenger_model.evaluate(train_data)
+    if automl:
+        performance = challenger_model.evaluate(test_data)['accuracy']
+    else:
+        performance = challenger_model.score(X_test, y_test)
+
     print(100 * "-")
     print(performance)
     print(100 * "-")

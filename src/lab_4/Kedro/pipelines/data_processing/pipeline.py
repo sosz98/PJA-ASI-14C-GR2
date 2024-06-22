@@ -13,7 +13,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
             node(
                 func=create,
-                inputs="validated_obesity",
+                inputs=["validated_obesity", "params:automl"],
                 outputs="challenger_model",
                 name="model_creation_node",
             ),
