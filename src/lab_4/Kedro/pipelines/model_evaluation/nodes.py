@@ -34,7 +34,6 @@ def load_champion(model_bean):
 
 def compare_models(champion: ModelBean, challenger: ModelBean):
     challenger_perf = challenger.performance
-    print(champion.performance)
     if champion.performance < 0:
         print(100 * "-")
         print('Champion does not exist, challenger is new champion')
